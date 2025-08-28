@@ -20,7 +20,6 @@ class TarjetaMiddleware
         }
         $ultimaAccion = $request->session()->get("ultima_accion");
         if(!session()) { //acá se verifica que la sesion si haya sido creada (lo planeado era que solo hubiera sesion activa durante 1 minuto)
-            $request->session()->flush(); //Borra todos los datos de la session
             return view('index')->with('error', "Sesión expirada, por favor ingrese la tarjeta nuevamente");
         }
         $request->session()->put("ultima_accion", now()); //reseteo el contador

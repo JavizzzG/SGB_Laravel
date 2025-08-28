@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Menu</title>
+    <title>Saldo</title>
     @vite(['resources/css/app.css'])
 </head>
-<body class = "flex flex-col justify-center items-center h-screen w-full bg-global">
-    <header class="w-full">
+<body class= "bg-global w-full">
+    <header>
         @if (session('error'))
         <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative w-full text-center" role="alert">
             <strong class="font-bold">Error!</strong>
@@ -20,14 +20,9 @@
         </div>
         @endif
     </header>
-        <div class= "">
-            <h1 class="font-bold text-6xl mb-30 mt-10 text-center">MENÚ</h1>
-                <h2 class="text-center text-3xl mb-20 font-bold">Seleccione una opción:</h2>
-                <a href="{{ route('cajero.retirar')}}"> Realizar Retiro</a>
-                <form method="POST" action="{{ route('getSaldo') }}">
-                    @csrf
-                    <button type="submit">Consultar Saldo</button>
-                </form>      
-        </div>
+    <div class="flex flex-col justify-center items-center h-screen">
+        <h1 class="font-bold text-6xl mb-10">Consultar Saldo</h1>
+        <p class="text-2xl">Su saldo actual es: <strong>{{ $tarjeta->monto_tarjeta }}</strong></p>
+    </div>
 </body>
 </html>

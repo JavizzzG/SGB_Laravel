@@ -8,7 +8,7 @@ class Tarjeta extends Model
 {
     protected $table = 'tarjeta';
 
-    protected $fillable = [
-        'monto_tarjeta',
+    protected $fillable = [ // solo se deja editable el monto de la tarjeta
+        'monto_tarjeta', 
     ];
 }

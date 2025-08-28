@@ -23,13 +23,13 @@ Route::get('/menu', function () {
 // Ruta para la vista donde se puede realizar un retiro de dinero
 Route::get('/retiro', function () {
     return view('cajero.retirar');
-})->name("cajero.retirar");
+})->middleware('tarjeta')->name("cajero.retirar");
 
 // Ruta para la vista final después de realizar un retiro
 Route::get('/final', function () {
     return view('cajero.final');
-})->name("cajero.final");
+})->middleware('tarjeta')->name("cajero.final");
 
 // Rutas de funcionalidades
-Route::post("/procesando_retiro", [CajeroServices::class, 'hacerRetiro'])->name("cajero.procesando_retiro");
-Route::post('/retirando', [RegistroController::class, 'retirar'])->name("retirar");
+Route::post("/procesando_retiro", [CajeroServices::class, 'hacerRetiro'])->middleware('tarjeta')->name("cajero.procesando_retiro");
+Route::post('/retirando', [RegistroController::class, 'retirar'])->middleware('tarjeta')->name("retirar");

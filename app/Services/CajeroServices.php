@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Tarjeta; //importamos los modelos que vamos a utilizar
 use App\Models\Billete;
 
+use Exception;
+
 class CajeroServices
 {
     public static function hacerRetiro(Request $request) {
@@ -17,7 +19,7 @@ class CajeroServices
             'valor_registro' => 'required|integer'
         ]);
         if($validado['valor_registro'] > $tarjeta->monto_tarjeta){ //revisa si el monto de la tarjeta es sufciciente y cubre el retiro
-            return redirect()->back()->with('error', "Fondos insuficientes en la tarjeta");
+            throw new Exception("El monto a retirar es mayor al disponible en la tarjeta");
         }
         $billetes = Billete::orderBy('valor_billete', 'desc')->get(); //trae los billetes ordenados de mayor a menor
         $valor_registro = $validado['valor_registro']; //metemos el valor del monto en otra variable
@@ -38,7 +40,7 @@ class CajeroServices
             }
         }
         if($valor_actual < $valor_registro){ //comprueba que no se de más del que se requiere
-            return redirect()->back()->with('error', "No hay billetes suficientes para completar el retiro");
+            throw new Exception("No hay billetes suficientes para realizar el retiro");
         }
 
         foreach($billetes as $billete){ //disminuye la cantidad de billetes en la base de datos

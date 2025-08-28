@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('registro', function (Blueprint $table) {
             $table->id();
             $table->foreignId('tarjeta_id')->constrained('tarjeta')->onDelete('cascade');
-            $table->tinyInteger('accion_registro');
+            $table->tinyInteger('accion_registro'); //1: retiro 2: deposito 3: consulta
             $table->integer("valor_registro");
             $table->timestamps();
         });

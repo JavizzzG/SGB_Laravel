@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inicio</title>
+    <title>FInal</title>
     @vite(['resources/css/app.css'])
 </head>
 <body class = "flex flex-col justify-center items-center h-screen w-full bg-global">
@@ -21,13 +21,19 @@
         @endif
     </header>
         <div class= "">
-            <h1 class="font-bold text-6xl mb-30 mt-10 text-center">Bienvenido a la página de inicio.</h1>
-            <form method="POST" action="{{ route('getInfo')}}" class="flex flex-col items-center" >
-                @csrf
-                <h2 class="text-center text-3xl mb-20 font-bold">Por favor ingrese la tarjeta</h2>
-                <input type="text" name="numero_tarjeta" placeholder="Numero de la tarjeta" class="border p-2 rounded mb-5 w-100">
-                <button type="submit" class="bg-blue-500 text-white p-2 rounded w-50 hover:bg-blue-600">Ingresar</button>
-            </form>
+            <h1 class="font-bold text-6xl mb-30 mt-10 text-center">¡Retiro Exitoso!</h1>
+                <h2 class="text-center text-3xl mb-20 font-bold">Por favor recoja su dinero</h2>
+                <h3 class="text-center text-2xl mb-10 font-bold">Detalle del retiro:</h3>
+                <ul class="text-center text-2xl mb-10 font-bold">
+                    @foreach($informacion as $b => $cantidad)
+                        <li>Fueron entregados {{ $cantidad }} billetes de {{ $b}}</li>
+                    @endforeach
+                </ul>
+                <div class="w-12/12 flex flex-row justify-between">
+                    <a href="{{ route('index')}}" class="text-3xl underline">Volver al inicio</a>
+                    <a href="{{ route('cajero.retirar')}}" class="text-3xl underline">Hacer otro retiro</a>
+                </div>
+                    
         </div>
 </body>
 </html>

@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('cedula_cuenta');
             $table->string('nombre_cuenta');
             $table->string('telefono_cuenta');
-            $table->string('nacimiento_cuenta');
+            $table->date('nacimiento_cuenta');
             $table->tinyInteger('estado_cuenta'); //1: activo, 0: inactivo
             $table->integer('monto_cuenta');
             $table->timestamps();
